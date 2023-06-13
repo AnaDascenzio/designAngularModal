@@ -5,23 +5,27 @@
 </button>
 
 <ng-template #modal>
+    <form [formGroup]="form" (ngSubmit)="submit()">
     <div class="form-field">
         <label for="firstName">First name</label>
-        <input id="firstName" [value]="firstName">
+        <input formControlName="firstName"   id="firstName">
     </div>
     <div class="form-field">
         <label for="surName"> Surname</label>
-        <input id="surname" type="text">
+        <input formControlName="surname" id="surname" type="text">
     </div>
     <div class="form-field">
         <label for="age">Age</label>
-        <input id="age" type="text">
+        <input formControlName="age" id="age" type="text">
     </div>
 
     <div class="button-group">
-        <button class="button button-primary" type="button">Submit</button>
+        <button 
+        [attr.aria-disabled]="form.invalid"
+        class="button button-primary" type="submit">Submit</button>
         <button class="button button-secondary" type="button"
         (click)="modalRef.close()"
         >Cancel</button>
     </div>
+</form>
 </ng-template>
